@@ -1,3 +1,18 @@
+# INSTRUCTIONS FOR MCP SERVESRS
+
+## GITHUB
+~/Documents/David Ondrej/video files/Cursor MCP/code/.cursor/rules/MCP.md
+
+###
+get_file_contents
+create_or_update_file
+
+## API
+
+###
+
+---
+
 # MCP (Model-Controller-Presenter) 架構規範
 
 ## 目錄結構
@@ -208,6 +223,7 @@ try {
 | 日期 | 版本 | 更新內容 |
 |------|------|----------|
 | 2024-03-15 | 1.0 | 初始版本 |
+| 2024-03-15 | 1.1 | 添加 MCP SERVESRS 說明 |
 
 ## 維護者
 
