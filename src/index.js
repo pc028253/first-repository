@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
 const UserPresenter = require('./presenters/UserPresenter');
 
 const app = express();
@@ -18,6 +20,12 @@ mongoose.connect('mongodb://localhost:27017/first-repository', {
   console.error('MongoDB 連接失敗:', error);
 });
 
+// Swagger API 文檔
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'First Repository API 文檔'
+}));
+
 // 路由
 app.use('/api', UserPresenter.getRouter());
 
@@ -30,4 +38,5 @@ app.use((err, req, res, next) => {
 // 啟動服務器
 app.listen(PORT, () => {
   console.log(`服務器運行在 http://localhost:${PORT}`);
+  console.log(`API 文檔可在此查看: http://localhost:${PORT}/api-docs`);
 });

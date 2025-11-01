@@ -1,0 +1,34 @@
+# 依賴套件
+node_modules/
+package-lock.json
+
+# 環境變數
+.env
+.env.local
+.env.*.local
+
+# 日誌文件
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 編輯器目錄
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 作業系統文件
+.DS_Store
+Thumbs.db
+
+# 測試覆蓋率
+coverage/
+.nyc_output/
+
+# 構建輸出
+dist/
+build/
