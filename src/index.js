@@ -3,12 +3,16 @@ const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
 const UserPresenter = require('./presenters/UserPresenter');
+const TestPresenter = require('./presenters/TestPresenter');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // 中間件
 app.use(express.json());
+
+// 靜態文件服務
+app.use(express.static('public'));
 
 // 連接數據庫
 mongoose.connect('mongodb://localhost:27017/first-repository', {
@@ -26,7 +30,10 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
   customSiteTitle: 'First Repository API 文檔'
 }));
 
-// 路由
+// 測試路由（無需數據庫）
+app.use('/api/test', TestPresenter.getRouter());
+
+// 路由（需要 MongoDB）
 app.use('/api', UserPresenter.getRouter());
 
 // 錯誤處理中間件
@@ -38,5 +45,6 @@ app.use((err, req, res, next) => {
 // 啟動服務器
 app.listen(PORT, () => {
   console.log(`服務器運行在 http://localhost:${PORT}`);
-  console.log(`API 文檔可在此查看: http://localhost:${PORT}/api-docs`);
+  console.log(`測試界面: http://localhost:${PORT}`);
+  console.log(`API 文檔: http://localhost:${PORT}/api-docs`);
 });
